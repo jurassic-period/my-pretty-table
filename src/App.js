@@ -1,13 +1,10 @@
-import './App.css';
+import "./App.css";
+import { Table } from "./table";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Just text
-        </p>
-      </header>
+      <Table />
     </div>
   );
 }
