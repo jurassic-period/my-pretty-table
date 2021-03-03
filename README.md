@@ -1,5 +1,5 @@
-### My pretty table
+## My pretty table
 
-React
+React, JS
 
-## [demo-prod](sydarskii-my-pretty-table.surge.sh)
+### [demo-prod](https://sydarskii-my-pretty-table.surge.sh/)
