@@ -1,5 +1,5 @@
 import React from "react";
-import { defaultData } from "../default-data";
+import defaultData from "../default-data/default.json";
 import { TableRow } from "./TableRow";
 
 const sorting = {
