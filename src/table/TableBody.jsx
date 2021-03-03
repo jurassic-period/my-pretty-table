@@ -2,39 +2,35 @@ import React from "react";
 import defaultData from "../default-data/default.json";
 import { TableRow } from "./TableRow";
 
-const sorting = {
-  email: function (a, b) {
-    if (a.email > b.email) {
-      return 1;
-    }
-    if (a.email < b.email) {
-      return -1;
-    }
-    return 0;
-  },
-  balance: function (a, b) {
-    if (a.balance > b.balance) {
-      return 1;
-    }
-    if (a.balance < b.balance) {
-      return -1;
-    }
-    return 0;
-  },
-};
-
-const Body = ({ isActive, sort }) => {
+const Body = ({ isActive, sort, reversed }) => {
+  // by state the data is either default or sorted
   const sortedData =
-    sort === "default" ? defaultData : [...defaultData].sort(sorting[sort]);
+    sort === "default"
+      ? defaultData
+      : [...defaultData].sort(function (a, b) {
+          if (a[sort] > b[sort]) {
+            return 1;
+          }
+          if (a[sort] < b[sort]) {
+            return -1;
+          }
+          return 0;
+        });
 
+  // if necessary, expand the sorting
+  const preparedData = reversed ? sortedData.reverse() : sortedData;
+
+  // split the data into all parents and all children
   const children = isActive ? [] : defaultData.filter((c) => c.parentId !== 0);
+
   const parents = isActive
-    ? sortedData.filter((c) => c.isActive)
-    : sortedData.filter((c) => c.parentId === 0);
+    ? preparedData.filter((c) => c.isActive)
+    : preparedData.filter((c) => c.parentId === 0);
+  // TableRow will get own filtered children
   return (
     <tbody>
       {parents.map((p) => (
-        <TableRow key={p.name} parent={p}>
+        <TableRow key={`t-body-${p.name}`} parent={p}>
           {children.filter((d) => d.parentId === p.id)}
         </TableRow>
       ))}

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const renderChildrenRows = (filteredChildren) =>
   filteredChildren.map((c) => {
     return (
-      <tr key={`table-row-name-${c.name}`} className="tr">
+      <tr key={`t-row-${c.name}`} className="tr">
         <td>☃</td>
         <td>{c.name}</td>
         <td>{c.isActive && "✔"}</td>
@@ -16,12 +16,13 @@ const renderChildrenRows = (filteredChildren) =>
 const Row = ({ parent, children }) => {
   const [isVisible, setIsVisible] = useState(false);
 
+  // Parent added always, children if needed
   return (
     <>
       <tr className="tr">
         {children.length ? (
           <td className="children" onClick={() => setIsVisible((s) => !s)}>
-            {isVisible ? "⌄" : "+"}
+            {isVisible ? "^" : "+"}
           </td>
         ) : (
           <td></td>

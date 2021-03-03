@@ -2,4 +2,4 @@
 
 React, JS
 
-### [demo-prod](https://sydarskii-my-pretty-table.surge.sh/)
+### [demo-prod](https://sudarskii-my-pretty-table.surge.sh/)

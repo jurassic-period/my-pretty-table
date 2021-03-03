@@ -4,14 +4,28 @@ import { TableBody } from "./TableBody";
 export const Table = () => {
   const [isActive, setIsActive] = useState(false);
   const [sort, setSort] = useState("default");
-  const changeSort = (key) => () => setSort(key);
+  const [reversedSort, setRevSort] = useState(false);
+
+  // changes 2 states, eliminates double clicks by default, but fixes for double mail and balance
+  const changeSort = (key) => () => {
+    if (sort === key && sort !== "default") {
+      setRevSort((s) => !s);
+    } else {
+      setSort(key);
+    }
+  };
+
+  // optimization of reuse of very similar code
+  const btnColor = (state, label) => ({
+    color: `${state === label ? "#dd2c00" : "black"}`,
+  });
   return (
     <>
       <h2>My pretty table</h2>
       <div className="filter-panel">
         <button
           className="btn"
-          style={{ color: `${isActive ? "#dd2c00" : "black"}` }}
+          style={btnColor(isActive, true)}
           onClick={() => setIsActive((s) => !s)}
         >
           isActive
@@ -19,7 +33,7 @@ export const Table = () => {
         <button
           onClick={changeSort("default")}
           className="btn"
-          style={{ color: `${sort === "default" ? "#dd2c00" : "black"}` }}
+          style={btnColor(sort, "default")}
         >
           Sort by default
         </button>
@@ -34,7 +48,7 @@ export const Table = () => {
               <button
                 onClick={changeSort("email")}
                 className="btn"
-                style={{ color: `${sort === "email" ? "#dd2c00" : "black"}` }}
+                style={btnColor(sort, "email")}
               >
                 Email
               </button>
@@ -43,14 +57,14 @@ export const Table = () => {
               <button
                 onClick={changeSort("balance")}
                 className="btn"
-                style={{ color: `${sort === "balance" ? "#dd2c00" : "black"}` }}
+                style={btnColor(sort, "balance")}
               >
                 Balance
               </button>
             </th>
           </tr>
         </thead>
-        <TableBody isActive={isActive} sort={sort} />
+        <TableBody isActive={isActive} sort={sort} reversed={reversedSort} />
       </table>
     </>
   );
