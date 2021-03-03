@@ -19,9 +19,12 @@
   display: flex;
   justify-content: space-around;
   width: 25%;
+  border-radius: 5px;
+  padding: 5px 0;
+  background-color: #e0e0e0;
 }
 .btn {
-  padding: 0.225rem .75rem;
+  padding: 0.225rem 0.75rem;
   font-size: 1rem;
   cursor: pointer;
 }
@@ -47,9 +50,9 @@
 
 .children:hover {
   background-color: #e0e0e0;
-  transition-duration: .2s;
+  transition-duration: 0.2s;
 }
 .children:active {
   color: #e0e0e0;
-  transition-duration: .0s;
+  transition-duration: 0s;
 }

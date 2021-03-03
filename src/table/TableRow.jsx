@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 
 const renderChildrenRows = (filteredChildren) =>
-  filteredChildren.map((c, i) => {
+  filteredChildren.map((c) => {
     return (
       <tr key={`table-row-name-${c.name}`} className="tr">
         <td>☃</td>
         <td>{c.name}</td>
-        <td>{c.isActive && '✔'}</td>
+        <td>{c.isActive && "✔"}</td>
         <td>{c.email}</td>
         <td>{c.balance}</td>
       </tr>
     );
   });
 
-  const Row = ({ parent, children }) => {
+const Row = ({ parent, children }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
@@ -27,7 +27,7 @@ const renderChildrenRows = (filteredChildren) =>
           <td></td>
         )}
         <td>{parent.name}</td>
-        <td>{parent.isActive && '✔'}</td>
+        <td>{parent.isActive && "✔"}</td>
         <td>{parent.email}</td>
         <td>{parent.balance}</td>
       </tr>
