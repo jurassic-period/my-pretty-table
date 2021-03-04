@@ -1,31 +1,33 @@
 import React from "react";
-import defaultData from "../default-data/default.json";
+import users from "../default-data/default.json";
 import { TableRow } from "./TableRow";
 
-const Body = ({ isActive, sort, reversed }) => {
+const Body = ({ shouldShowOnlyActive, sortType, isSortingReversed }) => {
   // by state the data is either default or sorted
-  const sortedData =
-    sort === "default"
-      ? defaultData
-      : [...defaultData].sort(function (a, b) {
-          if (a[sort] > b[sort]) {
+  const sortedUsers =
+    sortType === "default"
+      ? users
+      : [...users].sort(function (a, b) {
+          if (a[sortType] > b[sortType]) {
             return 1;
           }
-          if (a[sort] < b[sort]) {
+          if (a[sortType] < b[sortType]) {
             return -1;
           }
           return 0;
         });
 
   // if necessary, expand the sorting
-  const preparedData = reversed ? sortedData.reverse() : sortedData;
+  const preparedUsers = isSortingReversed ? sortedUsers.reverse() : sortedUsers;
 
   // split the data into all parents and all children
-  const children = isActive ? [] : preparedData.filter((c) => c.parentId !== 0);
+  const children = shouldShowOnlyActive
+    ? []
+    : preparedUsers.filter((c) => c.parentId !== 0);
 
-  const parents = isActive
-    ? preparedData.filter((c) => c.isActive)
-    : preparedData.filter((c) => c.parentId === 0);
+  const parents = shouldShowOnlyActive
+    ? preparedUsers.filter((c) => c.isActive)
+    : preparedUsers.filter((c) => c.parentId === 0);
   // TableRow will get own filtered children
   return (
     <tbody>

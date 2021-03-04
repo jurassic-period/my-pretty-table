@@ -2,18 +2,18 @@ import { useState } from "react";
 import { TableBody } from "./TableBody";
 
 export const Table = () => {
-  const [isActive, setIsActive] = useState(false);
-  const [sort, setSort] = useState("default");
-  const [reversedSort, setRevSort] = useState(false);
+  const [shouldShowOnlyActive, setshouldShowOnlyActive] = useState(false);
+  const [sortType, setsortType] = useState("default");
+  const [isSortingReversed, setIsSortingReversed] = useState(false);
 
-  const getArrow = () => (reversedSort === false ? "ˆ" : "ˇ");
+  const getArrow = () => (isSortingReversed === false ? "ˆ" : "ˇ");
 
   // changes 2 states, eliminates double clicks by default, but fixes for double mail and balance
-  const changeSort = (key) => () => {
-    if (sort === key && sort !== "default") {
-      setRevSort((s) => !s);
+  const changesortType = (key) => () => {
+    if (sortType === key && sortType !== "default") {
+      setIsSortingReversed((s) => !s);
     } else {
-      setSort(key);
+      setsortType(key);
     }
   };
 
@@ -26,18 +26,20 @@ export const Table = () => {
       <h2>My pretty table</h2>
       <div className="filter-panel">
         <button
-          className="btn"
-          style={getButtonStyle(isActive, true)}
-          onClick={() => setIsActive((s) => !s)}
+          className="btn btn-reletive"
+          onClick={() => setshouldShowOnlyActive((s) => !s)}
         >
-          isActive
+          Show only active
+          {shouldShowOnlyActive && (
+            <div className="show-active-absolute">⚬</div>
+          )}
         </button>
         <button
-          onClick={changeSort("default")}
+          onClick={changesortType("default")}
           className="btn"
-          style={getButtonStyle(sort, "default")}
+          style={getButtonStyle(sortType, "default")}
         >
-          Sort by default(ID)
+          sortType by default(ID)
         </button>
       </div>
       <table className="table">
@@ -48,31 +50,35 @@ export const Table = () => {
             <th>Active</th>
             <th>
               <button
-                onClick={changeSort("email")}
-                className="btn sort-reletive"
-                style={getButtonStyle(sort, "email")}
+                onClick={changesortType("email")}
+                className="btn btn-reletive"
+                style={getButtonStyle(sortType, "email")}
               >
                 Email
-                <div className="sort-absolute">
-                  {sort === "email" && getArrow()}
+                <div className="btn-absolute">
+                  {sortType === "email" && getArrow()}
                 </div>
               </button>
             </th>
             <th>
               <button
-                onClick={changeSort("balance")}
-                className="btn sort-reletive"
-                style={getButtonStyle(sort, "balance")}
+                onClick={changesortType("balance")}
+                className="btn btn-reletive"
+                style={getButtonStyle(sortType, "balance")}
               >
                 Balance
-                <div className="sort-absolute">
-                  {sort === "balance" && getArrow()}
+                <div className="btn-absolute">
+                  {sortType === "balance" && getArrow()}
                 </div>
               </button>
             </th>
           </tr>
         </thead>
-        <TableBody isActive={isActive} sort={sort} reversed={reversedSort} />
+        <TableBody
+          shouldShowOnlyActive={shouldShowOnlyActive}
+          sortType={sortType}
+          isSortingReversed={isSortingReversed}
+        />
       </table>
     </>
   );

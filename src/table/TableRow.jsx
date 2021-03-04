@@ -14,15 +14,18 @@ const renderChildrenRows = (filteredChildren) =>
   });
 
 const Row = ({ parent, children }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [areChildrenVisible, setAreChildrenVisible] = useState(false);
 
   // Parent added always, children if needed
   return (
     <>
       <tr className="tr">
         {children.length ? (
-          <td className="children" onClick={() => setIsVisible((s) => !s)}>
-            {isVisible ? "^" : "+"}
+          <td
+            className="children"
+            onClick={() => setAreChildrenVisible((s) => !s)}
+          >
+            {areChildrenVisible ? "^" : "+"}
           </td>
         ) : (
           <td></td>
@@ -32,7 +35,7 @@ const Row = ({ parent, children }) => {
         <td>{parent.email}</td>
         <td>{parent.balance}</td>
       </tr>
-      {isVisible && renderChildrenRows(children)}
+      {areChildrenVisible && renderChildrenRows(children)}
     </>
   );
 };

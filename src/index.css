@@ -27,7 +27,8 @@ code {
 .table {
   border-radius: 5px;
   border-spacing: 0 0.8em;
-  width: 60%;
+  width: 70%;
+  table-layout: fixed;
 }
 
 .filter-panel {
@@ -59,14 +60,21 @@ code {
   margin-top: 15px;
 }
 
-.sort-reletive {
+.btn-reletive {
   position: relative;
 }
 
-.sort-absolute {
+.btn-absolute {
   position: absolute;
   right: 4px;
   top: 5px;
+}
+
+.show-active-absolute {
+  position: absolute;
+  right: -1px;
+  top: 3px;
+  color: #dd2c00;
 }
 
 .children {
