@@ -21,7 +21,7 @@ const Body = ({ isActive, sort, reversed }) => {
   const preparedData = reversed ? sortedData.reverse() : sortedData;
 
   // split the data into all parents and all children
-  const children = isActive ? [] : defaultData.filter((c) => c.parentId !== 0);
+  const children = isActive ? [] : preparedData.filter((c) => c.parentId !== 0);
 
   const parents = isActive
     ? preparedData.filter((c) => c.isActive)
