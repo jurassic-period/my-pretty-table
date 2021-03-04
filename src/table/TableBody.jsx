@@ -30,7 +30,7 @@ const Body = ({ isActive, sort, reversed }) => {
   return (
     <tbody>
       {parents.map((p) => (
-        <TableRow key={`t-body-${p.name}`} parent={p}>
+        <TableRow key={`t-body-${p.id}`} parent={p}>
           {children.filter((d) => d.parentId === p.id)}
         </TableRow>
       ))}

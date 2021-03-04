@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const renderChildrenRows = (filteredChildren) =>
   filteredChildren.map((c) => {
     return (
-      <tr key={`t-row-${c.name}`} className="tr">
+      <tr key={`t-row-${c.id}`} className="tr">
         <td>☃</td>
         <td>{c.name}</td>
         <td>{c.isActive && "✔"}</td>

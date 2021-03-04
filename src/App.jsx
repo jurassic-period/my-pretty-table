@@ -1,9 +1,8 @@
-import "./App.css";
 import { Table } from "./table";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Table />
     </div>
   );

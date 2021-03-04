@@ -6,6 +6,8 @@ export const Table = () => {
   const [sort, setSort] = useState("default");
   const [reversedSort, setRevSort] = useState(false);
 
+  const getArrow = () => (reversedSort === false ? "ˆ" : "ˇ");
+
   // changes 2 states, eliminates double clicks by default, but fixes for double mail and balance
   const changeSort = (key) => () => {
     if (sort === key && sort !== "default") {
@@ -16,7 +18,7 @@ export const Table = () => {
   };
 
   // optimization of reuse of very similar code
-  const btnColor = (state, label) => ({
+  const getButtonStyle = (state, label) => ({
     color: `${state === label ? "#dd2c00" : "black"}`,
   });
   return (
@@ -25,7 +27,7 @@ export const Table = () => {
       <div className="filter-panel">
         <button
           className="btn"
-          style={btnColor(isActive, true)}
+          style={getButtonStyle(isActive, true)}
           onClick={() => setIsActive((s) => !s)}
         >
           isActive
@@ -33,9 +35,9 @@ export const Table = () => {
         <button
           onClick={changeSort("default")}
           className="btn"
-          style={btnColor(sort, "default")}
+          style={getButtonStyle(sort, "default")}
         >
-          Sort by default
+          Sort by default(ID)
         </button>
       </div>
       <table className="table">
@@ -48,18 +50,20 @@ export const Table = () => {
               <button
                 onClick={changeSort("email")}
                 className="btn"
-                style={btnColor(sort, "email")}
+                style={getButtonStyle(sort, "email")}
               >
                 Email
+                {sort === "email" && getArrow()}
               </button>
             </th>
             <th>
               <button
                 onClick={changeSort("balance")}
                 className="btn"
-                style={btnColor(sort, "balance")}
+                style={getButtonStyle(sort, "balance")}
               >
                 Balance
+                {sort === "balance" && getArrow()}
               </button>
             </th>
           </tr>
