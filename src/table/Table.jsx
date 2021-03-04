@@ -49,21 +49,25 @@ export const Table = () => {
             <th>
               <button
                 onClick={changeSort("email")}
-                className="btn"
+                className="btn sort-reletive"
                 style={getButtonStyle(sort, "email")}
               >
                 Email
-                {sort === "email" && getArrow()}
+                <div className="sort-absolute">
+                  {sort === "email" && getArrow()}
+                </div>
               </button>
             </th>
             <th>
               <button
                 onClick={changeSort("balance")}
-                className="btn"
+                className="btn sort-reletive"
                 style={getButtonStyle(sort, "balance")}
               >
                 Balance
-                {sort === "balance" && getArrow()}
+                <div className="sort-absolute">
+                  {sort === "balance" && getArrow()}
+                </div>
               </button>
             </th>
           </tr>

@@ -59,6 +59,16 @@ code {
   margin-top: 15px;
 }
 
+.sort-reletive {
+  position: relative;
+}
+
+.sort-absolute {
+  position: absolute;
+  right: 4px;
+  top: 5px;
+}
+
 .children {
   cursor: pointer;
 }
