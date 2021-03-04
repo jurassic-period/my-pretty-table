@@ -39,7 +39,7 @@ export const Table = () => {
           className="btn"
           style={getButtonStyle(sortType, "default")}
         >
-          sortType by default(ID)
+          sort by default(ID)
         </button>
       </div>
       <table className="table">
